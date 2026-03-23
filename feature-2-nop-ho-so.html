@@ -1,0 +1,11 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Nộp hồ sơ</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+const procedures = Store.read(KEYS.procedures,[]);
+renderLayout('feature-2-nop-ho-so.html','2) Nộp hồ sơ trực tuyến','Nộp hồ sơ điện tử thực tế, lưu localStorage.',`
+<div class='card'><form id='f' class='row'>
+<select name='procedureId'>${procedures.map(p=>`<option value='${p.id}'>${p.name}</option>`)}</select>
+<input name='title' required placeholder='Tiêu đề hồ sơ'>
+<textarea name='content' required placeholder='Nội dung hồ sơ'></textarea>
+<button>Nộp hồ sơ</button></form><div id='m' class='small'></div></div>
+`);
+const f=document.getElementById('f');f.onsubmit=(e)=>{e.preventDefault(); const d=Object.fromEntries(new FormData(f)); const p=procedures.find(x=>x.id===d.procedureId); addRecord(KEYS.applications,{id:'HS-'+Date.now(),...d,status:'Đã tiếp nhận',fee:p.fee,result:null,createdAt:new Date().toISOString()}); m.textContent='Đã nộp hồ sơ thành công'; f.classList.add('flash'); setTimeout(()=>f.classList.remove('flash'),300);};
+</script></body></html>

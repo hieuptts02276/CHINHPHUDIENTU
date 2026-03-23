@@ -1,0 +1,7 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dịch vụ liên thông</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+renderLayout('feature-10-lien-thong.html','10) Tích hợp dịch vụ công liên thông','Một hồ sơ xử lý nhiều thủ tục liên quan.',`
+<div class='card'><form id='l' class='row'><input name='childName' required placeholder='Tên trẻ'><input name='parent' required placeholder='Tên phụ huynh'><button>Tạo hồ sơ liên thông</button></form><div id='msg' class='small'></div></div>
+<div class='card' style='margin-top:12px'><h3>Luồng liên thông</h3><ul class='list'><li>Khai sinh</li><li>Đăng ký bảo hiểm y tế</li><li>Đăng ký nhập học</li></ul></div>
+`);
+l.onsubmit=(e)=>{e.preventDefault();const d=Object.fromEntries(new FormData(l)); addRecord(KEYS.applications,{id:'LT-'+Date.now(),procedureId:'LIENTHONG',title:`Liên thông cho ${d.childName}`,content:JSON.stringify(d),status:'Đã tiếp nhận',fee:0,createdAt:new Date().toISOString()}); msg.textContent='Đã tạo hồ sơ liên thông';};
+</script></body></html>

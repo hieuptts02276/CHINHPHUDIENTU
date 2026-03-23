@@ -1,0 +1,6 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Theo dõi tiến độ</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+let apps=Store.read(KEYS.applications,[]);
+renderLayout('feature-4-theo-doi.html','4) Theo dõi tiến độ xử lý','Tra cứu trạng thái hồ sơ theo thời gian thực (local).',`
+<div class='card'><table class='table'><tr><th>Mã HS</th><th>Tiêu đề</th><th>Trạng thái</th><th>Thanh toán</th><th>Cập nhật</th></tr>${apps.map(a=>`<tr><td>${a.id}</td><td>${a.title}</td><td>${a.status}</td><td>${a.paid?'Đã thanh toán':'Chưa thanh toán'}</td><td>${new Date(a.createdAt).toLocaleString('vi-VN')}</td></tr>`).join('') || '<tr><td colspan="5">Chưa có hồ sơ</td></tr>'}</table></div>
+`);
+</script></body></html>

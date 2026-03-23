@@ -1,0 +1,29 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Đăng nhập | Cổng DVC</title><link rel="stylesheet" href="assets.css"></head><body>
+<div class="auth-wrap">
+  <div class="auth-card">
+    <section class="card"><h2>Đăng nhập</h2><p class="small">Truy cập toàn bộ 12+ dịch vụ công trực tuyến.</p>
+      <form id="loginForm" class="row">
+        <input required type="email" name="email" placeholder="Email">
+        <input required type="password" name="password" placeholder="Mật khẩu">
+        <button>Đăng nhập</button>
+      </form><div id="loginMsg" class="small"></div>
+    </section>
+    <section class="card"><h2>Đăng ký</h2><p class="small">Tạo tài khoản công dân số (demo localStorage).</p>
+      <form id="regForm" class="row">
+        <input required name="name" placeholder="Họ và tên">
+        <input required type="email" name="email" placeholder="Email">
+        <input required name="phone" placeholder="Số điện thoại">
+        <input required type="password" name="password" placeholder="Mật khẩu">
+        <button>Tạo tài khoản</button>
+      </form><div id="regMsg" class="small"></div>
+    </section>
+  </div>
+</div>
+<script src="app.js"></script>
+<script>
+seedData();
+if (currentUser()) location.href = 'dashboard.html';
+loginForm.onsubmit = (e)=>{e.preventDefault(); const fd=new FormData(loginForm); try { login(Object.fromEntries(fd)); location.href='dashboard.html'; } catch(err){ loginMsg.textContent = err.message; }};
+regForm.onsubmit = (e)=>{e.preventDefault(); const fd=new FormData(regForm); try { register(Object.fromEntries(fd)); location.href='dashboard.html'; } catch(err){ regMsg.textContent = err.message; }};
+</script>
+</body></html>

@@ -1,0 +1,6 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Xác thực điện tử</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+renderLayout('feature-7-xac-thuc.html','7) Xác thực điện tử','Xác thực định danh và ký số giả lập thực bằng dữ liệu người dùng.',`
+<div class='card'><form id='x' class='row'><input name='citizenId' required placeholder='Nhập CCCD'><input name='otp' required placeholder='Nhập OTP (123456)'><button>Xác thực</button></form><div id='msg' class='small'></div></div>
+`);
+x.onsubmit=(e)=>{e.preventDefault(); const d=Object.fromEntries(new FormData(x)); msg.textContent = d.otp==='123456' ? `Xác thực thành công cho CCCD ${d.citizenId}` : 'OTP không hợp lệ'; };
+</script></body></html>

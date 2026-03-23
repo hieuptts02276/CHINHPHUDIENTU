@@ -1,0 +1,15 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Tổng quan</title><link rel="stylesheet" href="assets.css"></head><body>
+<script src="app.js"></script>
+<script>
+const apps = Store.read(KEYS.applications, []);
+const done = apps.filter(a=>a.status==='Đã hoàn tất').length;
+renderLayout('dashboard.html','Tổng quan hệ thống','Bảng điều khiển một cửa điện tử toàn trình.',`
+<div class="grid">
+ <div class="card"><h3>Tài khoản công dân</h3><p class="small">Sử dụng đăng nhập/đăng ký thật qua localStorage.</p></div>
+ <div class="card"><h3>Hồ sơ đã nộp</h3><div style="font-size:2rem">${apps.length}</div></div>
+ <div class="card"><h3>Hồ sơ hoàn tất</h3><div style="font-size:2rem">${done}</div></div>
+ <div class="card"><h3>Phản ánh/kiến nghị</h3><div style="font-size:2rem">${Store.read(KEYS.feedbacks,[]).length}</div></div>
+</div>
+<div class="card" style="margin-top:14px"><h3>Trạng thái nhanh</h3><ul class="list"><li>Đầy đủ 12 nhóm tính năng nghiệp vụ.</li><li>Mỗi tính năng là một trang HTML riêng.</li><li>Có hiệu ứng hover, nhấn, mở trang theo phong cách Fluent 2.</li></ul></div>
+`);
+</script></body></html>

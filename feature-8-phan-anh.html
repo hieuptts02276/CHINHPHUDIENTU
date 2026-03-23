@@ -1,0 +1,8 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Phản ánh kiến nghị</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+const list=Store.read(KEYS.feedbacks,[]);
+renderLayout('feature-8-phan-anh.html','8) Phản ánh – kiến nghị','Gửi phản ánh trực tuyến và theo dõi tiếp nhận.',`
+<div class='card'><form id='f' class='row'><input name='title' required placeholder='Tiêu đề phản ánh'><textarea name='detail' required placeholder='Nội dung'></textarea><button>Gửi phản ánh</button></form><div id='msg' class='small'></div></div>
+<div class='card' style='margin-top:12px'><h3>Lịch sử phản ánh</h3><ul class='list'>${list.map(i=>`<li><b>${i.title}</b> - ${i.status} (${new Date(i.createdAt).toLocaleString('vi-VN')})</li>`).join('') || '<li>Chưa có phản ánh</li>'}</ul></div>
+`);
+f.onsubmit=(e)=>{e.preventDefault();const d=Object.fromEntries(new FormData(f)); addRecord(KEYS.feedbacks,{...d,status:'Đã tiếp nhận',createdAt:new Date().toISOString()}); msg.textContent='Đã gửi phản ánh';};
+</script></body></html>
