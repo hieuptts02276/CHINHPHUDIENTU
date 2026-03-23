@@ -1,0 +1,8 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dữ liệu mở</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+const logs=Store.read(KEYS.openData,[]);
+renderLayout('feature-11-du-lieu-mo.html','11) Công bố dữ liệu mở','Tải bộ dữ liệu hành chính công khai.',`
+<div class='card'><form id='d' class='row'><select name='dataset'><option>Danh mục TTHC</option><option>Dữ liệu doanh nghiệp</option><option>Dữ liệu đất đai tổng hợp</option></select><button>Tải dữ liệu</button></form><div id='msg' class='small'></div></div>
+<div class='card' style='margin-top:12px'><h3>Nhật ký tải</h3><ul class='list'>${logs.map(i=>`<li>${i.dataset} - ${new Date(i.at).toLocaleString('vi-VN')}</li>`).join('') || '<li>Chưa có lượt tải</li>'}</ul></div>
+`);
+d.onsubmit=(e)=>{e.preventDefault();const form=Object.fromEntries(new FormData(d)); addRecord(KEYS.openData,{...form,at:new Date().toISOString()}); msg.textContent='Đã ghi nhận lượt tải dữ liệu mở';};
+</script></body></html>

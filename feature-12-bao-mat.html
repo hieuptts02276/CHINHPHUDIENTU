@@ -1,0 +1,10 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Bảo mật</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+const user=currentUser() || {email:'N/A'};
+renderLayout('feature-12-bao-mat.html','12) Bảo mật và an toàn thông tin','Kiểm tra phiên đăng nhập, lưu trữ an toàn dữ liệu cục bộ.',`
+<div class='grid'>
+<div class='card'><h3>Phiên đăng nhập hiện tại</h3><p>Email: <b>${user.email}</b></p><p class='small'>Phiên được lưu trong localStorage (mô phỏng token phiên).</p></div>
+<div class='card'><h3>Biện pháp</h3><ul class='list'><li>Mã hóa mật khẩu base64 trong demo.</li><li>Phân quyền trang qua requireAuth().</li><li>Tách dữ liệu theo key nghiệp vụ.</li></ul></div>
+<div class='card'><h3>Dọn dữ liệu cục bộ</h3><button id='clear'>Xóa toàn bộ dữ liệu demo</button><div id='msg' class='small'></div></div>
+</div>`);
+clear.onclick=()=>{ localStorage.clear(); msg.textContent='Đã xóa dữ liệu. Hệ thống sẽ về trạng thái ban đầu.'; };
+</script></body></html>

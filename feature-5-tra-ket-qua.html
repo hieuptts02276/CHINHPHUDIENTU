@@ -1,0 +1,8 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Trả kết quả</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+let apps=Store.read(KEYS.applications,[]);
+renderLayout('feature-5-tra-ket-qua.html','5) Trả kết quả trực tuyến','Tạo và nhận kết quả điện tử cho hồ sơ.',`
+<div class='card'><form id='r' class='row'><select name='id'>${apps.map(a=>`<option value='${a.id}'>${a.id} - ${a.title}</option>`).join('')}</select><input name='result' placeholder='Ví dụ: Đã cấp giấy khai sinh'><button>Cập nhật kết quả</button></form><div id='msg' class='small'></div></div>
+<div class='card' style='margin-top:12px'><h3>Danh sách kết quả</h3><ul class='list'>${apps.filter(a=>a.result).map(a=>`<li><b>${a.id}</b>: ${a.result}</li>`).join('') || '<li>Chưa có kết quả</li>'}</ul></div>
+`);
+r.onsubmit=(e)=>{e.preventDefault();const d=Object.fromEntries(new FormData(r)); apps=Store.read(KEYS.applications,[]); const i=apps.findIndex(a=>a.id===d.id); if(i<0)return; apps[i].result=d.result; apps[i].status='Đã hoàn tất'; apps[i].resultAt=new Date().toISOString(); Store.write(KEYS.applications,apps); msg.textContent='Đã trả kết quả điện tử';};
+</script></body></html>

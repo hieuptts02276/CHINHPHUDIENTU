@@ -1,0 +1,6 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Kết nối dữ liệu quốc gia</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+const d=Store.read(KEYS.linkedData,{});
+renderLayout('feature-6-ket-noi.html','6) Kết nối dữ liệu quốc gia','Liên thông hộ tịch, bảo hiểm, đất đai, doanh nghiệp.',`
+<div class='grid'><div class='card'><h3>Hộ tịch</h3><p>Mã định danh: <b>${d.citizenId||''}</b></p></div><div class='card'><h3>Bảo hiểm</h3><p>Mã BHXH: <b>${d.insurance||''}</b></p></div><div class='card'><h3>Đất đai</h3><p>Mã hồ sơ: <b>${d.land||''}</b></p></div><div class='card'><h3>Doanh nghiệp</h3><p>Mã đăng ký: <b>${d.business||''}</b></p></div></div>
+`);
+</script></body></html>

@@ -1,0 +1,6 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Công khai TTHC</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+const procedures = Store.read(KEYS.procedures,[]);
+renderLayout('feature-1-cong-khai.html','1) Công khai thủ tục hành chính','Tra cứu quy trình, thời hạn và lệ phí công khai.',`
+<div class='card'><h3>Danh mục thủ tục</h3><table class='table'><tr><th>Mã</th><th>Tên thủ tục</th><th>Thời hạn</th><th>Lệ phí</th><th>Quy trình</th></tr>${procedures.map(p=>`<tr><td>${p.id}</td><td>${p.name}</td><td>${p.days} ngày</td><td>${fmtVND(p.fee)}</td><td>${p.steps}</td></tr>`).join('')}</table></div>
+`);
+</script></body></html>

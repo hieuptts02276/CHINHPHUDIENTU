@@ -1,0 +1,7 @@
+<!doctype html><html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Thanh toán</title><link rel="stylesheet" href="assets.css"></head><body><script src="app.js"></script><script>
+let apps=Store.read(KEYS.applications,[]);
+renderLayout('feature-3-thanh-toan.html','3) Thanh toán trực tuyến','Thanh toán phí/lệ phí hồ sơ qua kênh số.',`
+<div class='card'><form id='pay' class='row'><select name='id'>${apps.filter(a=>!a.paid && a.fee>0).map(a=>`<option value='${a.id}'>${a.id} - ${a.title} (${fmtVND(a.fee)})</option>`).join('') || '<option disabled>Không có hồ sơ cần thanh toán</option>'}</select><select name='method'><option>Ngân hàng</option><option>Ví điện tử</option></select><button>Thanh toán</button></form><div id='msg' class='small'></div></div>
+`);
+pay.onsubmit=(e)=>{e.preventDefault(); const d=Object.fromEntries(new FormData(pay)); apps=Store.read(KEYS.applications,[]); const idx=apps.findIndex(a=>a.id===d.id); if(idx<0)return; apps[idx].paid=true; apps[idx].paymentMethod=d.method; apps[idx].paidAt=new Date().toISOString(); Store.write(KEYS.applications,apps); msg.textContent='Thanh toán thành công: '+d.id;};
+</script></body></html>
